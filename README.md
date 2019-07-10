@@ -23,3 +23,11 @@ Supported tags and respective `Dockerfile` links
 * `7.5.0`, `7.5` [_(7.5/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/7.5/alpine/Dockerfile)
 * `6.6.6`, `6.6`, `6` [_(6.6/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/6.6/alpine/Dockerfile)
 * `5.5.5`, `5.5`, `5` [_(5.5/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/5.5/alpine/Dockerfile)
+
+## Image with config sets
+
+We have [wodby/solr](https://github.com/wodby/solr) image based on this image that contains built-in config sets (currently only Drupal).  
+
+## Maintenance
+
+Synced with the upstream and auto-updated via [wodby/images](https://github.com/wodby/images)
