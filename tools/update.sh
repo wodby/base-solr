@@ -7,7 +7,7 @@
 # We record a checksum in the Dockerfile, for verification at docker build time.
 # We verify the content's GPG signature here.
 # We also write a TAGS file with the docker tags for the image.
-set -euo pipefail
+set -exuo pipefail
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.."
 
@@ -72,8 +72,11 @@ function write_files {
     fi
 
     if [[ "$dash_variant" = "-alpine" ]]; then
-        echo "Alpine is no longer supported"
-        exit 1
+        if (( major_version == 7 && minor_version >= 3 )) || (( major_version > 7 )); then
+            FROM="adoptopenjdk\/openjdk11:alpine-jre"
+        else
+            FROM="adoptopenjdk\/openjdk8:alpine-jre"
+        fi
     elif [[ "$dash_variant" = "-slim" ]]; then
         if (( major_version == 7 && minor_version >= 3 )) || (( major_version > 7 )); then
             FROM=openjdk:11-slim
@@ -94,7 +97,7 @@ function write_files {
     echo "generating $target_dir"
     mkdir -p "$target_dir"
     <"$template" sed -E \
-      -e "s/FROM \\\$REPLACE_FROM/FROM $FROM/g" \
+      -e "s/FROM \\\$REPLACE_FROM/FROM ${FROM}/g" \
       -e "s/\\\$REPLACE_SOLR_VERSION/$full_version/g" \
       -e "s/\\\$REPLACE_SOLR_SHA256/$SHA256/g" \
       -e "s/\\\$REPLACE_SOLR_KEYS/$KEYS/g" \
@@ -325,16 +328,17 @@ for version in "${versions[@]}"; do
 
     cd "$TOP_DIR"
 
-    write_files "$full_version"
-    write_files "$full_version" 'slim'
+    write_files "$full_version" 'alpine'
     echo
+
+    sed -i -E "s/(SOLR_VER=)${version//./\\.}\.[0-9]+/\1${full_version}/" .travis.yml
+    sed -i -E "s/(SOLR_VER \?= )${version//./\\.}\.[0-9]+/\1${full_version}/" "${version}/alpine/Makefile"
 done
 
 if [ -f "$OWNERTRUSTFILE" ]; then rm "$OWNERTRUSTFILE"; fi
 if [ -f "$upstream_versions" ]; then rm "$upstream_versions"; fi
 
 tools/check_froms.sh
-tools/write_travis.sh > .travis.yml
 
 if [[ "$all_dirs" == "false" ]]; then
   echo "WARNING: TAGS was not updated, because directories were specified"

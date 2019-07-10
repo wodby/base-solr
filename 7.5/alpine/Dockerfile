@@ -1,5 +1,5 @@
 
-FROM $REPLACE_FROM
+FROM adoptopenjdk/openjdk11:alpine-jre
 
 # Override the solr download location with e.g.:
 #   docker build -t mine --build-arg SOLR_DOWNLOAD_SERVER=http://www-eu.apache.org/dist/lucene/solr .
@@ -20,16 +20,11 @@ ENV SOLR_USER="solr" \
     SOLR_UID="8983" \
     SOLR_GROUP="solr" \
     SOLR_GID="8983" \
-    SOLR_VERSION="$REPLACE_SOLR_VERSION" \
-    SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/$REPLACE_SOLR_VERSION/solr-$REPLACE_SOLR_VERSION.tgz" \
-    SOLR_SHA256="$REPLACE_SOLR_SHA256" \
-    SOLR_KEYS="$REPLACE_SOLR_KEYS" \
-    PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH" \
-    SOLR_INCLUDE=/etc/default/solr.in.sh \
-    SOLR_HOME=/var/solr/data \
-    SOLR_PID_DIR=/var/solr \
-    SOLR_LOGS_DIR=/var/solr/logs \
-    LOG4J_PROPS=/var/solr/log4j2.xml
+    SOLR_VERSION="7.5.0" \
+    SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/7.5.0/solr-7.5.0.tgz" \
+    SOLR_SHA256="eac2daffc376dd8057ee831fbfc4a1b8ee236b8ad94122e11d67fd2b242acebc" \
+    SOLR_KEYS="052C5B48A480B9CEA9E218A5F98C13CFA5A135D8" \
+    PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH"
 
 ENV GOSU_VERSION 1.11
 ENV GOSU_KEY B42F6819007F00F88E364FD4036A9C25BF357DD4
@@ -75,35 +70,18 @@ RUN set -e; \
   (>&2 ls -l "/opt/solr-$SOLR_VERSION.tgz" "/opt/solr-$SOLR_VERSION.tgz.asc") && \
   gpg --batch --verify "/opt/solr-$SOLR_VERSION.tgz.asc" "/opt/solr-$SOLR_VERSION.tgz" && \
   tar -C /opt --extract --file "/opt/solr-$SOLR_VERSION.tgz" && \
-  (cd /opt && ln -s "solr-$SOLR_VERSION" solr) && \
+  mv "/opt/solr-$SOLR_VERSION" /opt/solr && \
   rm "/opt/solr-$SOLR_VERSION.tgz"* && \
   rm -Rf /opt/solr/docs/ && \
   mkdir -p /opt/solr/server/solr/lib /docker-entrypoint-initdb.d /opt/docker-solr && \
-  chown -R 0:0 "/opt/solr-$SOLR_VERSION" && \
-  find "/opt/solr-$SOLR_VERSION" -type d -print0 | xargs -0 chmod 0755 && \
-  find "/opt/solr-$SOLR_VERSION" -type f -print0 | xargs -0 chmod 0644 && \
-  chmod -R 0755 "/opt/solr-$SOLR_VERSION/bin" "/opt/solr-$SOLR_VERSION/contrib/prometheus-exporter/bin/solr-exporter" && \
-  mkdir /etc/default && \
-  chown root: /etc/default && \
-  chmod 0755 /etc/default && \
-  cp /opt/solr/bin/solr.in.sh /etc/default/solr.in.sh && \
-  mv /opt/solr/bin/solr.in.sh /opt/solr/bin/solr.in.sh.orig && \
-  mv /opt/solr/bin/solr.in.cmd /opt/solr/bin/solr.in.cmd.orig && \
-  chown solr:0 /etc/default/solr.in.sh && \
-  chmod 0664 /etc/default/solr.in.sh && \
-  mkdir -p /var/solr/data /var/solr/logs && \
-  (cd /opt/solr/server/solr && cp solr.xml zoo.cfg /var/solr/data/) && \
-  cp /opt/solr/server/resources/log4j2.xml /var/solr/log4j2.xml && \
-  find /var/solr -type d -print0 | xargs -0 chmod 0770 && \
-  find /var/solr -type f -print0 | xargs -0 chmod 0660 && \
+  mkdir -p /opt/solr/server/solr/mycores /opt/solr/server/logs /opt/mysolrhome && \
   sed -i -e "s/\"\$(whoami)\" == \"root\"/\$(id -u) == 0/" /opt/solr/bin/solr && \
   sed -i -e 's/lsof -PniTCP:/lsof -t -PniTCP:/' /opt/solr/bin/solr && \
-  chown -R "0:0" /opt/solr-$SOLR_VERSION /docker-entrypoint-initdb.d /opt/docker-solr && \
-  chown -R "$SOLR_USER:0" /var/solr
+  chown -R "$SOLR_USER:$SOLR_GROUP" /opt/solr /docker-entrypoint-initdb.d /opt/docker-solr && \
+  chown -R "$SOLR_USER:$SOLR_GROUP" /opt/mysolrhome
 
-COPY --chown=0:0 scripts /opt/docker-solr/scripts
+COPY --chown=solr:solr scripts /opt/docker-solr/scripts
 
-VOLUME /var/solr
 EXPOSE 8983
 WORKDIR /opt/solr
 USER $SOLR_USER

@@ -1,75 +1,26 @@
-dist: xenial
+language: bash
+services: docker
 
-sudo: required
+env:
+  matrix:
+  - SOLR_VER=8.1.1 TAGS="${SOLR_VER},8.1,8,latest"
+  - SOLR_VER=8.0.0 TAGS="${SOLR_VER},8.0"
+  - SOLR_VER=7.7.2 TAGS="${SOLR_VER},7.7,7"
+  - SOLR_VER=7.6.0 TAGS="${SOLR_VER},7.6"
+  - SOLR_VER=7.5.0 TAGS="${SOLR_VER},7.5"
+  - SOLR_VER=6.6.6 TAGS="${SOLR_VER},6.6,6"
+  - SOLR_VER=5.5.5 TAGS="${SOLR_VER},5.5,5"
 
-language: generic
+script:
+- cd "${SOLR_VER:0:3}/alpine"
+- travis_retry make
 
-services:
-- docker
+after_success:
+- . "${TRAVIS_BUILD_DIR}/release.sh"
 
-addons:
-  apt:
-    packages:
-      - docker-ce
-
-before_install:
-- docker info
-
-jobs:
-  include:
-    - stage: build, test, deploy
-      env:
-      - PROCESS=8.1/slim
-      script: tools/build_test_push.sh 8.1/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=8.1
-      script: tools/build_test_push.sh 8.1
-    - stage: build, test, deploy
-      env:
-      - PROCESS=8.0/slim
-      script: tools/build_test_push.sh 8.0/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=8.0
-      script: tools/build_test_push.sh 8.0
-    - stage: build, test, deploy
-      env:
-      - PROCESS=7.7/slim
-      script: tools/build_test_push.sh 7.7/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=7.7
-      script: tools/build_test_push.sh 7.7
-    - stage: build, test, deploy
-      env:
-      - PROCESS=7.6/slim
-      script: tools/build_test_push.sh 7.6/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=7.6
-      script: tools/build_test_push.sh 7.6
-    - stage: build, test, deploy
-      env:
-      - PROCESS=7.5/slim
-      script: tools/build_test_push.sh 7.5/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=7.5
-      script: tools/build_test_push.sh 7.5
-    - stage: build, test, deploy
-      env:
-      - PROCESS=6.6/slim
-      script: tools/build_test_push.sh 6.6/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=6.6
-      script: tools/build_test_push.sh 6.6
-    - stage: build, test, deploy
-      env:
-      - PROCESS=5.5/slim
-      script: tools/build_test_push.sh 5.5/slim
-    - stage: build, test, deploy
-      env:
-      - PROCESS=5.5
-      script: tools/build_test_push.sh 5.5
+notifications:
+  email:
+    recipients:
+    - travisci@wodby.com
+    on_success: never
+    on_failure: always
