@@ -11,9 +11,12 @@
 set -euo pipefail
 echo "Executing $0" "$@"
 
-if [[ "${VERBOSE:-}" = "yes" ]]; then
+if [[ "${VERBOSE:-}" == "yes" ]]; then
     set -x
 fi
+
+# init script for handling an empty /var/solr
+/opt/docker-solr/scripts/init-var-solr
 
 . /opt/docker-solr/scripts/run-initdb
 
@@ -59,4 +62,5 @@ else
         exit 1
     fi
 fi
-exec solr -f
+
+exec solr-fg
