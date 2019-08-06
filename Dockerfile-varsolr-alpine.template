@@ -1,9 +1,6 @@
 
 FROM $REPLACE_FROM
 
-LABEL maintainer="Martijn Koster \"mak-docker@greenhills.co.uk\""
-LABEL repository="https://github.com/docker-solr/docker-solr"
-
 # Override the solr download location with e.g.:
 #   docker build -t mine --build-arg SOLR_DOWNLOAD_SERVER=http://www-eu.apache.org/dist/lucene/solr .
 ARG SOLR_DOWNLOAD_SERVER
@@ -66,7 +63,7 @@ RUN set -e; \
 
 RUN set -e; \
   export GNUPGHOME="/tmp/gnupg_home" && \
-  pkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
+  pkgArch="$(apk --print-arch | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')" && \
   wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$pkgArch" && \
   wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$pkgArch.asc" && \
   gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu && \
