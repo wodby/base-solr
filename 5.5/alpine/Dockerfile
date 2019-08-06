@@ -1,9 +1,6 @@
 
 FROM adoptopenjdk/openjdk8:alpine-jre
 
-LABEL maintainer="Martijn Koster \"mak-docker@greenhills.co.uk\""
-LABEL repository="https://github.com/docker-solr/docker-solr"
-
 # Override the solr download location with e.g.:
 #   docker build -t mine --build-arg SOLR_DOWNLOAD_SERVER=http://www-eu.apache.org/dist/lucene/solr .
 ARG SOLR_DOWNLOAD_SERVER
@@ -75,9 +72,9 @@ RUN set -e; \
   chmod +x /usr/local/bin/tini && \
   tini --version && \
   echo "downloading $SOLR_URL" && \
-  wget -nv "$SOLR_URL" -O "/opt/solr-$SOLR_VERSION.tgz" && \
+  wget -q "$SOLR_URL" -O "/opt/solr-$SOLR_VERSION.tgz" && \
   echo "downloading $SOLR_URL.asc" && \
-  wget -nv "$SOLR_URL.asc" -O "/opt/solr-$SOLR_VERSION.tgz.asc" && \
+  wget -q "$SOLR_URL.asc" -O "/opt/solr-$SOLR_VERSION.tgz.asc" && \
   echo "$SOLR_SHA256 */opt/solr-$SOLR_VERSION.tgz" | sha256sum -c - && \
   (>&2 ls -l "/opt/solr-$SOLR_VERSION.tgz" "/opt/solr-$SOLR_VERSION.tgz.asc") && \
   gpg --batch --verify "/opt/solr-$SOLR_VERSION.tgz.asc" "/opt/solr-$SOLR_VERSION.tgz" && \
