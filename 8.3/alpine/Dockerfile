@@ -1,5 +1,5 @@
 
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk/openjdk13:alpine-jre
 
 # Override the solr download location with e.g.:
 #   docker build -t mine --build-arg SOLR_DOWNLOAD_SERVER=http://www-eu.apache.org/dist/lucene/solr .
