@@ -22,7 +22,7 @@ ENV SOLR_USER="solr" \
     SOLR_GID="8983" \
     SOLR_VERSION="7.5.0" \
     SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/7.5.0/solr-7.5.0.tgz" \
-    SOLR_SHA256="eac2daffc376dd8057ee831fbfc4a1b8ee236b8ad94122e11d67fd2b242acebc" \
+    SOLR_SHA256="$REPLACE_SOLR_SHA256" \
     SOLR_KEYS="052C5B48A480B9CEA9E218A5F98C13CFA5A135D8" \
     PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH"
 

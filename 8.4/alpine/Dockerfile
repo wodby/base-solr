@@ -1,5 +1,5 @@
 
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk/openjdk13:alpine-jre
 
 # Override the solr download location with e.g.:
 #   docker build -t mine --build-arg SOLR_DOWNLOAD_SERVER=http://www-eu.apache.org/dist/lucene/solr .
@@ -20,10 +20,10 @@ ENV SOLR_USER="solr" \
     SOLR_UID="8983" \
     SOLR_GROUP="solr" \
     SOLR_GID="8983" \
-    SOLR_VERSION="8.0.0" \
-    SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/8.0.0/solr-8.0.0.tgz" \
+    SOLR_VERSION="8.4.0" \
+    SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/8.4.0/solr-8.4.0.tgz" \
     SOLR_SHA256="$REPLACE_SOLR_SHA256" \
-    SOLR_KEYS="052C5B48A480B9CEA9E218A5F98C13CFA5A135D8" \
+    SOLR_KEYS="E6E21FFCDCEA14C95910EA65051A0FAF76BC6507" \
     PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH" \
     SOLR_INCLUDE=/etc/default/solr.in.sh \
     SOLR_HOME=/var/solr/data \
