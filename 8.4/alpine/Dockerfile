@@ -4,9 +4,9 @@ FROM adoptopenjdk/openjdk13:alpine-jre
 LABEL maintainer="Martijn Koster \"mak-docker@greenhills.co.uk\""
 LABEL repository="https://github.com/docker-solr/docker-solr"
 
-ARG SOLR_VERSION="8.4.0"
-ARG SOLR_SHA512="37107e5fb3965ffc556b4090ff891cc8473e2b5dc2cdbf0657dffaf8f2bf3923506b1b7261bec97c5ba48bef60cabc2ca910f868b65a695abcfbf72d92327e11"
-ARG SOLR_KEYS="E6E21FFCDCEA14C95910EA65051A0FAF76BC6507"
+ARG SOLR_VERSION="8.4.1"
+ARG SOLR_SHA512="2f210dae8d6a07b111ede22005fbd16aa6848900cda8adb352a33e08229783a170dddb529a7eb990f5157d4f5427c199df2114b9c0ffecdf9490a2ac07c6bb09"
+ARG SOLR_KEYS="2085660D9C1FCCACC4A479A3BF160FF14992A24C"
 # If specified, this will override SOLR_DOWNLOAD_SERVER and all ASF mirrors. Typically used downstream for custom builds
 ARG SOLR_DOWNLOAD_URL
 
