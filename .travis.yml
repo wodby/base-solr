@@ -3,7 +3,7 @@ services: docker
 
 env:
   matrix:
-  - SOLR_VER="8.4.1" TAGS="${SOLR_VER},8.4,8,latest" TESTABC="1.2.3" TESTZXC="${TESTABC},4,5"
+  - SOLR_VER="8.4.1" TAGS="${SOLR_VER},8.4,8,latest" TESTABC_VER="1.2.3" TESTZXC="${TESTABC_VER},4,5"
   - SOLR_VER=8.3.1 TAGS="${SOLR_VER},8.3"
   - SOLR_VER=8.2.0 TAGS="${SOLR_VER},8.2"
   - SOLR_VER=8.1.1 TAGS="${SOLR_VER},8.1"
@@ -17,7 +17,7 @@ env:
 script:
 - echo "${SOLR_VER}"
 - echo "${TAGS}"
-- echo "${TESTABC}"
+- echo "${TESTABC_VER}"
 - echo "${TESTZXC}"
 - cd "${SOLR_VER:0:3}/alpine"
 - travis_retry make
