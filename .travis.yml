@@ -3,7 +3,7 @@ services: docker
 
 env:
   matrix:
-  - SOLR_VER="8.4.1" TAGS="${SOLR_VER},8.4,8,latest" TESTABC_ASD="1.2.3" TESTZXC="${TESTABC_ASD},4,5"
+  - SOLR_VER=8.4.1 TAGS="${SOLR_VER},8.4,8,latest"
   - SOLR_VER=8.3.1 TAGS="${SOLR_VER},8.3"
   - SOLR_VER=8.2.0 TAGS="${SOLR_VER},8.2"
   - SOLR_VER=8.1.1 TAGS="${SOLR_VER},8.1"
@@ -15,16 +15,10 @@ env:
   - SOLR_VER=5.5.5 TAGS="${SOLR_VER},5.5,5"
 
 script:
-- echo "${SOLR_VER}"
-- echo "${TAGS}"
-- echo "${TESTABC_ASD}"
-- echo "${TESTZXC}"
 - cd "${SOLR_VER:0:3}/alpine"
 - travis_retry make
 
 after_success:
-- echo "${SOLR_VER}"
-- echo "${TAGS}"
 - . "${TRAVIS_BUILD_DIR}/release.sh"
 
 notifications:

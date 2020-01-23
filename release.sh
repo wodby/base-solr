@@ -9,7 +9,6 @@ if [[ "${TRAVIS_PULL_REQUEST}" == "false" && ("${TRAVIS_BRANCH}" == "master"  ||
         export STABILITY_TAG="${TRAVIS_TAG}"
     fi
 
-    echo "${TAGS}"
     IFS=',' read -ra tags <<< "${TAGS}"
 
     for tag in "${tags[@]}"; do
