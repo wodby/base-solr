@@ -345,7 +345,7 @@ done
 if [ -f "$OWNERTRUSTFILE" ]; then rm "$OWNERTRUSTFILE"; fi
 if [ -f "$upstream_versions" ]; then rm "$upstream_versions"; fi
 
-tools/check_froms.sh
+#tools/check_froms.sh
 
 if [[ "$all_dirs" == "false" ]]; then
   echo "WARNING: TAGS was not updated, because directories were specified"
