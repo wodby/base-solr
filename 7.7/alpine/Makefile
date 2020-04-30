@@ -1,6 +1,6 @@
 -include env_make
 
-SOLR_VER ?= 7.7.2
+SOLR_VER ?= 7.7.3
 
 REPO = wodby/base-solr
 NAME = base-solr-$(SOLR_VER)
