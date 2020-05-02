@@ -25,9 +25,13 @@ RUN apk add --no-cache \
         tini \
         wget
 
+# @todo install gosu from main repository when it'll be moved from edge.
 RUN apk add -U --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ gosu
-RUN update-ca-certificates
+
+# solr-fg script use hardcoded path to tini.
 RUN ln -s /sbin/tini /usr/bin/tini
+
+RUN update-ca-certificates
 
 ENV SOLR_USER="solr" \
     SOLR_UID="8983" \
