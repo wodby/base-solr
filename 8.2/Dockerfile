@@ -1,7 +1,7 @@
 
 FROM openjdk:11-jre
 
-LABEL maintainer="Martijn Koster \"mak-docker@greenhills.co.uk\""
+LABEL maintainer="The Apache Lucene/Solr Project"
 LABEL repository="https://github.com/docker-solr/docker-solr"
 
 ARG SOLR_VERSION="8.2.0"
@@ -17,7 +17,10 @@ ARG SOLR_DOWNLOAD_SERVER
 RUN set -ex; \
   apt-get update; \
   apt-get -y install acl dirmngr gpg lsof procps wget netcat gosu tini; \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*; \
+  cd /usr/local/bin; wget -nv https://github.com/apangin/jattach/releases/download/v1.5/jattach; chmod 755 jattach; \
+  echo >jattach.sha512 "d8eedbb3e192a8596c08efedff99b9acf1075331e1747107c07cdb1718db2abe259ef168109e46bd4cf80d47d43028ff469f95e6ddcbdda4d7ffa73a20e852f9  jattach"; \
+  sha512sum -c jattach.sha512; rm jattach.sha512
 
 ENV SOLR_USER="solr" \
     SOLR_UID="8983" \

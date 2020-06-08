@@ -1,12 +1,12 @@
 
 FROM openjdk:11-jre-slim
 
-LABEL maintainer="Martijn Koster \"mak-docker@greenhills.co.uk\""
+LABEL maintainer="The Apache Lucene/Solr Project"
 LABEL repository="https://github.com/docker-solr/docker-solr"
 
-ARG SOLR_VERSION="8.5.1"
-ARG SOLR_SHA512="b372f44baeafa12ec9c06239080e04c75328c37c92e5d27e6f819b139a69eacbbb879d73f032b20db66d33ee33efb41283648727a169ce4edf67095b780a5d0c"
-ARG SOLR_KEYS="E58A6F4D5B2B48AC66D5E53BD4F181881A42F9E6"
+ARG SOLR_VERSION="8.5.2"
+ARG SOLR_SHA512="02b9b90468f399701dba26695c9af6cd205f47916a06e26838613fe238594e9902de6ef3b42ec8257d195e37589adf8427d9b7962557731e91949fbef06bb544"
+ARG SOLR_KEYS="86EDB9C33B8517228E88A8F93E48C0C6EF362B9E"
 # If specified, this will override SOLR_DOWNLOAD_SERVER and all ASF mirrors. Typically used downstream for custom builds
 ARG SOLR_DOWNLOAD_URL
 
@@ -17,7 +17,10 @@ ARG SOLR_DOWNLOAD_SERVER
 RUN set -ex; \
   apt-get update; \
   apt-get -y install acl dirmngr gpg lsof procps wget netcat gosu tini; \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*; \
+  cd /usr/local/bin; wget -nv https://github.com/apangin/jattach/releases/download/v1.5/jattach; chmod 755 jattach; \
+  echo >jattach.sha512 "d8eedbb3e192a8596c08efedff99b9acf1075331e1747107c07cdb1718db2abe259ef168109e46bd4cf80d47d43028ff469f95e6ddcbdda4d7ffa73a20e852f9  jattach"; \
+  sha512sum -c jattach.sha512; rm jattach.sha512
 
 ENV SOLR_USER="solr" \
     SOLR_UID="8983" \
