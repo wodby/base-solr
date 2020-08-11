@@ -9,14 +9,15 @@ This is the fork of https://github.com/docker-solr/docker-solr. After https://gi
 
 ## Docker Images
 
-* All images are based on Alpine Linux
+* All images based on Alpine Linux
 * Base image: [adoptopenjdk/openjdk8](https://hub.docker.com/r/adoptopenjdk/openjdk8) or [adoptopenjdk/openjdk11](https://hub.docker.com/r/adoptopenjdk/openjdk11)
 * [Travis CI builds](https://travis-ci.org/wodby/base-solr) 
 * [Docker Hub](https://hub.docker.com/r/wodby/base-solr)
 
 Supported tags and respective `Dockerfile` links
 
-* `8.5.0`, `8.5`, `8`, `latest` [_(8.5/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.5/alpine/Dockerfile)
+* `8.6.0`, `8.6`, `8`, `latest` [_(8.6/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.6/alpine/Dockerfile)
+* `8.5.0`, `8.5` [_(8.5/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.5/alpine/Dockerfile)
 * `8.4.0`, `8.3` [_(8.3/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.4/alpine/Dockerfile)
 * `8.3.0`, `8.3` [_(8.3/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.3/alpine/Dockerfile)
 * `8.2.0`, `8.2` [_(8.2/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.2/alpine/Dockerfile)
