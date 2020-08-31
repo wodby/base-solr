@@ -3,7 +3,7 @@ services: docker
 
 env:
   matrix:
-  - SOLR_VER=8.6.1 TAGS="${SOLR_VER},8.6,8,latest"
+  - SOLR_VER=8.6.2 TAGS="${SOLR_VER},8.6,8,latest"
   - SOLR_VER=8.5.2 TAGS="${SOLR_VER},8.5"
   - SOLR_VER=8.4.1 TAGS="${SOLR_VER},8.4"
   - SOLR_VER=8.3.1 TAGS="${SOLR_VER},8.3"
