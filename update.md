@@ -79,7 +79,7 @@ We don't typically announce the availability of new images.
 
 The build and test scripts are designed to run on a modern Linux or Mac. Windows users can use Vagrant virtual machine.
 Your host needs to have `docker`, `git`, `wget`, `gpg` and `bash` >= 4 installed.
-You will also need to install [bashbrew](https://github.com/docker-library/official-images/tree/master/bashbrew) such that it is on your `PATH`.
+You will also need to install [bashbrew](https://github.com/docker-library/bashbrew/) such that it is on your `PATH`.
 
 ### Setting up environment on Ubuntu
 
@@ -87,7 +87,7 @@ You will also need to install [bashbrew](https://github.com/docker-library/offic
 sudo apt-get update
 sudo apt-get -y install lsof procps curl wget gpg gawk shellcheck vim less git parallel
 sudo apt-get -y install docker.io
-sudo wget -nv --output-document=/usr/local/bin/bashbrew https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64
+sudo wget -nv --output-document=/usr/local/bin/bashbrew https://github.com/docker-library/bashbrew/releases/download/v0.1.1/bashbrew-amd64
 sudo chmod a+x /usr/local/bin/bashbrew
 sudo adduser $USER docker
 ```
@@ -103,7 +103,7 @@ You also need the GNU version of some tools.
 brew install gpg  # If you don't have GPG already
 brew install git  # If you don't have git already
 brew install coreutils wget gawk shellcheck bash parallel findutils  # Other dependencies
-sudo wget -nv --output-document=/usr/local/bin/bashbrew https://doi-janky.infosiftr.net/job/bashbrew/lastSuccessfulBuild/artifact/bin/bashbrew-darwin-amd64
+sudo wget -nv --output-document=/usr/local/bin/bashbrew https://github.com/docker-library/bashbrew/releases/download/v0.1.1/bashbrew-darwin-amd64
 sudo chmod a+x /usr/local/bin/bashbrew
 ```
 
@@ -173,6 +173,7 @@ SOLR_DOWNLOAD_SERVER="http://host.docker.internal:8083" tools/build_all.sh
 wget -t 1 http://localhost:8083/quit >/dev/null 2>&1
 ```
 
+*Note: "host.docker.internal" is supported on macOS & Windows, but perhaps not anywhere else.  Try "localhost".*
 Keep an eye out for "This key is not certified with a trusted signature!"; it would be good to verify the fingerprints with ones you have in your PGP keyring.
 I typically commit key changes separately from version updates.
 
