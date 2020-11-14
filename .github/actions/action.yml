@@ -30,4 +30,4 @@ runs:
       make
       . $GITHUB_ACTION_PATH/release.sh
     shell: bash
-    working-directory: ${{ inputs.workdir }}
+    working-directory: ${{ inputs.workdir }}/alpine
