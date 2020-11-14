@@ -1,6 +1,6 @@
 # About this Repo
 
-[![Build Status](https://travis-ci.com/wodby/base-solr.svg?branch=master)](https://travis-ci.com/wodby/base-solr)
+[![Build Status](https://github.com/wodby/base-solr/workflows/Build%20docker%20image/badge.svg)](https://github.com/wodby/base-solr/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/base-solr.svg)](https://hub.docker.com/r/wodby/base-solr)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/base-solr.svg)](https://hub.docker.com/r/wodby/base-solr)
 [![Docker Layers](https://images.microbadger.com/badges/image/wodby/base-solr.svg)](https://microbadger.com/images/wodby/base-solr)
@@ -11,10 +11,10 @@ This is the fork of https://github.com/docker-solr/docker-solr. After https://gi
 
 * All images based on Alpine Linux
 * Base image: [adoptopenjdk/openjdk8](https://hub.docker.com/r/adoptopenjdk/openjdk8) or [adoptopenjdk/openjdk11](https://hub.docker.com/r/adoptopenjdk/openjdk11)
-* [Travis CI builds](https://travis-ci.org/wodby/base-solr) 
+- [GitHub actions builds](https://github.com/wodby/base-solr/actions) 
 * [Docker Hub](https://hub.docker.com/r/wodby/base-solr)
 
-Supported tags and respective `Dockerfile` links
+Supported tags and respective `Dockerfile` links (MAY NOT BE UP TO DATE, see `./github/workflows/workflow.yml` for real versions)
 
 * `8.7.0`, `8.7`, `8`, `latest` [_(8.7/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.7/alpine/Dockerfile)
 * `8.6.3`, `8.6` [_(8.6/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.6/alpine/Dockerfile)
