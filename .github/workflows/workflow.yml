@@ -113,7 +113,7 @@ jobs:
         tags: ${{ env.SOLR80 }},8.0
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        workdir: 8.0
+        workdir: '8.0'
   solr-77:
     runs-on: ubuntu-latest
     steps:
