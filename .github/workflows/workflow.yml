@@ -25,6 +25,8 @@ env:
   SOLR75: 7.5.0
   SOLR66: 6.6.6
   SOLR55: 5.5.5
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   solr-88:
