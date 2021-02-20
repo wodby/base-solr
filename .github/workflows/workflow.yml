@@ -11,7 +11,7 @@ on:
   pull_request:
 
 env:
-  SOLR88: '8.8.0'
+  SOLR88: 8.8.0
   SOLR87: 8.7.0
   SOLR86: 8.6.3
   SOLR85: 8.5.2
@@ -36,7 +36,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.SOLR88 }}
-        tags: ${{ env.SOLR87 }},8.8,8,latest
+        tags: ${{ env.SOLR88 }},8.8,8,latest
         workdir: 8.8
   solr-87:
     runs-on: ubuntu-latest
