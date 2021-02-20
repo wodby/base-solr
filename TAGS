@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 8.8/alpine:8.8.0-alpine:8.8-alpine 8-alpine latest-alpine
 8.7/alpine:8.7.0-alpine:8.7-alpine
 8.6/alpine:8.6.3-alpine:8.6-alpine
@@ -12,3 +13,29 @@
 7.5/alpine:7.5.0-alpine:7.5-alpine
 6.6/alpine:6.6.6-alpine:6.6-alpine 6-alpine
 5.5/alpine:5.5.5-alpine:5.5-alpine 5-alpine
+=======
+8.8:8.8.0:8.8 8 latest
+8.8/slim:8.8.0-slim:8.8-slim 8-slim latest-slim
+8.7:8.7.0:8.7
+8.7/slim:8.7.0-slim:8.7-slim
+8.6:8.6.3:8.6
+8.6/slim:8.6.3-slim:8.6-slim
+8.5:8.5.2:8.5
+8.5/slim:8.5.2-slim:8.5-slim
+8.4:8.4.1:8.4
+8.4/slim:8.4.1-slim:8.4-slim
+8.3:8.3.1:8.3
+8.3/slim:8.3.1-slim:8.3-slim
+8.2:8.2.0:8.2
+8.2/slim:8.2.0-slim:8.2-slim
+8.1:8.1.1:8.1
+8.1/slim:8.1.1-slim:8.1-slim
+8.0:8.0.0:8.0
+8.0/slim:8.0.0-slim:8.0-slim
+7.7:7.7.3:7.7 7
+7.7/slim:7.7.3-slim:7.7-slim 7-slim
+6.6:6.6.6:6.6 6
+6.6/slim:6.6.6-slim:6.6-slim 6-slim
+5.5:5.5.5:5.5 5
+5.5/slim:5.5.5-slim:5.5-slim 5-slim
+>>>>>>> upstream/master
