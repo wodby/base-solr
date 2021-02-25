@@ -338,8 +338,9 @@ for version in "${versions[@]}"; do
     write_files "$full_version" 'alpine'
     echo
 
-    sed -i -E "s/(SOLR${version//./\\.}: )${version//./\\.}/\1${full_version}/" .github/workflows/workflow.yml
+    sed -i -E "s/(SOLR${version//./}: )${version//./\\.}\.[0-9]+/\1${full_version}/" .github/workflows/workflow.yml
     sed -i -E "s/(SOLR_VER \?= )${version//./\\.}\.[0-9]+/\1${full_version}/" "${version}/alpine/Makefile"
+    sed -i -E "s/${version//./\\.}\.[0-9]+/${full_version}/" README.md
 done
 
 if [ -f "$OWNERTRUSTFILE" ]; then rm "$OWNERTRUSTFILE"; fi
