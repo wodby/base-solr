@@ -9,12 +9,20 @@ ifeq ($(TAG),)
     TAG := $(SOLR_VER)
 endif
 
-.PHONY: build test push shell run start stop logs clean release
+PLATFORM ?= linux/amd64
+
+.PHONY: build buildx-build buildx-push test push shell run start stop logs clean release
 
 default: build
 
 build:
 	docker build -t $(REPO):$(TAG) ./
+
+buildx-build:
+	docker buildx build --platform $(PLATFORM) -t $(REPO):$(TAG) ./
+
+buildx-push:
+	docker buildx build --platform $(PLATFORM) --push -t $(REPO):$(TAG) ./
 
 test:
 	IMAGE=$(REPO):$(TAG) ./test.sh
