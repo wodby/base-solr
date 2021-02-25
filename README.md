@@ -31,7 +31,7 @@ Supported tags and respective `Dockerfile` links (MAY NOT BE UP TO DATE, see `./
 * `6.6.6`, `6.6`, `6` [_(6.6/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/6.6/alpine/Dockerfile)
 * `5.5.5`, `5.5`, `5` [_(5.5/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/5.5/alpine/Dockerfile)
 
-All images built for `linux/amd64`, Solr 8.3+ additionally built for `linux/arm64` 
+All images built for `linux/amd64` 
 
 ## Image with config sets
 
