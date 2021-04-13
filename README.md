@@ -16,7 +16,7 @@ This is the fork of https://github.com/docker-solr/docker-solr. After https://gi
 
 Supported tags and respective `Dockerfile` links:
 
-* `8.8.1`, `8.8`, `8`, `latest` [_(8.8/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.8/alpine/Dockerfile)
+* `8.8.2`, `8.8`, `8`, `latest` [_(8.8/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.8/alpine/Dockerfile)
 * `8.7.0`, `8.7` [_(8.7/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.7/alpine/Dockerfile)
 * `8.6.3`, `8.6` [_(8.6/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.6/alpine/Dockerfile)
 * `8.5.2`, `8.5` [_(8.5/alpine/Dockerfile)_](https://github.com/wodby/base-solr/tree/master/8.5/alpine/Dockerfile)
